@@ -28,8 +28,7 @@ namespace WPFCommandPanel
             InitializeComponent();
 
             string json = "";
-            string path = Assembly.GetEntryAssembly().Location.Contains("source") ? @"C:\Users\jwilli48\Desktop\AccessibilityTools\A11yPanel\options.json" :
-                                System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\options.json";
+            string path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\options.json";
             using (StreamReader r = new StreamReader(path))
             {
                 json = r.ReadToEnd();
@@ -43,8 +42,7 @@ namespace WPFCommandPanel
             {
                 if (e.Key == Key.S)
                 {
-                    string path = Assembly.GetEntryAssembly().Location.Contains("source") ? @"C:\Users\jwilli48\Desktop\AccessibilityTools\A11yPanel\options.json" :
-                    System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\options.json";
+                    string path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\options.json";
 
                     File.WriteAllText(path, editor.Text);
                     e.Handled = true;

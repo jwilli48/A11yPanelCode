@@ -32,8 +32,7 @@
         public RParserBase()
         {
             string json = "";
-            string path = Assembly.GetEntryAssembly().Location.Contains("source") ? @"C:\Users\jwilli48\Desktop\AccessibilityTools\A11yPanel\options.json" :
-                                System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\options.json";
+            string path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\options.json";
             using (StreamReader r = new StreamReader(path))
             {
                 json = r.ReadToEnd();

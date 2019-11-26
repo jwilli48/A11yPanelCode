@@ -1,2 +1,2 @@
-ReportGeneratorProj\bin\*
-WPFCommandPanel\bin\*
+**/bin
+**/obj
