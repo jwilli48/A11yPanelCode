@@ -465,10 +465,23 @@ namespace WPFCommandPanel
             else
             {
                 curPage.Doc.Save(curPage.Location);
-            }            
+            }
+            if (data.Count <= IssueGrid.SelectedIndex + 1)
+            {              
+            }
+            else
+            {
+                if (MoveGridRowTimer.ElapsedMilliseconds > 300)
+                {
+                    MoveGridRowTimer.Restart();
+                    IssueGrid.SelectedIndex = IssueGrid.SelectedIndex + 1;
+                }
+            }
             ViewSource.View.Refresh();
-            browser.LoadHtmlAndWait(curPage.Doc.DocumentNode.OuterHtml);
-            browser.QueueScriptCall($"var el = document.getElementById('focus_this'); el.scrollIntoView({{behavior: 'smooth' , block: 'center', inline: 'center'}});");           
+            SetCurrentNode();
+            //ViewSource.View.Refresh();
+            //browser.LoadHtmlAndWait(curPage.Doc.DocumentNode.OuterHtml);
+            //browser.QueueScriptCall($"var el = document.getElementById('focus_this'); el.scrollIntoView({{behavior: 'smooth' , block: 'center', inline: 'center'}});");           
         }
 
         /// <summary>

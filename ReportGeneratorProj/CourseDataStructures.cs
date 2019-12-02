@@ -78,24 +78,24 @@ namespace ReportGenerators
                             CanvasQuiz new_quiz = CanvasApi.PostNewQuizDescription(course_id, quiz.id, new_html);
                             quiz = new_quiz;
                             break;
-                        }                        
-                        var q = quiz_questions[int.Parse(question_id)];
+                        }
+                        int question_num = int.Parse(question_id);
                         if (answer_id == "")
                         {
-                            CanvasQuizQuesiton new_q = CanvasApi.PostNewQuizQuestionText(course_id, quiz.id, q.id, new_html);
-                            q = new_q;
+                            CanvasQuizQuesiton new_q = CanvasApi.PostNewQuizQuestionText(course_id, quiz.id, quiz_questions[question_num].id, new_html);
+                            quiz_questions[question_num] = new_q;
                             break;
                         }
                         if (comment)
                         {
-                            q.answers[int.Parse(answer_id)].answer_comments = new_html;
-                            CanvasQuizQuesiton new_q = CanvasApi.PostNewQuizQuestionAnswerComment(course_id, quiz.id, q.id, q.answers);
+                            quiz_questions[question_num].answers[int.Parse(answer_id)].answer_comments = new_html;
+                            CanvasQuizQuesiton new_q = CanvasApi.PostNewQuizQuestionAnswerComment(course_id, quiz.id, quiz_questions[question_num].id, quiz_questions[question_num].answers);
                             quiz_questions[int.Parse(question_id)] = new_q;
                         }
                         else
                         {
-                            q.answers[int.Parse(answer_id)].html = new_html;
-                            CanvasQuizQuesiton new_q = CanvasApi.PostNewQuizQuestionAnswer(course_id, quiz.id, q.id, q.answers);
+                            quiz_questions[question_num].answers[int.Parse(answer_id)].html = new_html;
+                            CanvasQuizQuesiton new_q = CanvasApi.PostNewQuizQuestionAnswer(course_id, quiz.id, quiz_questions[question_num].id, quiz_questions[question_num].answers);
                             quiz_questions[int.Parse(question_id)] = new_q;
                         }
                         break;
