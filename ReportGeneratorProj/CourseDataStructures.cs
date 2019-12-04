@@ -7,6 +7,7 @@ using System.IO;
 using My.CanvasApi;
 using Newtonsoft.Json;
 using System.Reflection;
+using System.Windows;
 
 namespace ReportGenerators
 {
@@ -46,7 +47,7 @@ namespace ReportGenerators
                         }
                         if(comment)
                         {
-                            return q.answers[int.Parse(answer_id)].answer_comments;
+                            return q.answers[int.Parse(answer_id)].comments_html;
                         }else
                         {
                             return q.answers[int.Parse(answer_id)].html;
@@ -56,52 +57,77 @@ namespace ReportGenerators
                 }
             }
 
-            public ItemInfo SaveContent(int course_id, string new_html, string question_id, string answer_id, bool comment)
+            public ItemInfo SaveContent(int course_id, string new_html, string question_id, string answer_id, bool comment, out bool success)
             {
-                switch (type)
+                try
                 {
-                    case "Page":
-                        CanvasPage new_page = CanvasApi.PostNewPageContent(course_id, page.url, new_html);
-                        page = new_page;
-                        break;
-                    case "Discussion":
-                        CanvasDiscussionTopic new_topic = CanvasApi.PostNewDiscussionMessage(course_id, discussion.id, new_html);
-                        discussion = new_topic;
-                        break;
-                    case "Assignment":
-                        CanvasAssignment new_assignment = CanvasApi.PostNewAssignmentDescription(course_id, assignment.id, new_html);
-                        assignment = new_assignment;
-                        break;
-                    case "Quiz":
-                        if (question_id == "")
-                        {
-                            CanvasQuiz new_quiz = CanvasApi.PostNewQuizDescription(course_id, quiz.id, new_html);
-                            quiz = new_quiz;
+                    switch (type)
+                    {
+                        case "Page":
+                            CanvasPage new_page = CanvasApi.PostNewPageContent(course_id, page.url, new_html);
+                            page = new_page;
                             break;
-                        }
-                        int question_num = int.Parse(question_id);
-                        if (answer_id == "")
-                        {
-                            CanvasQuizQuesiton new_q = CanvasApi.PostNewQuizQuestionText(course_id, quiz.id, quiz_questions[question_num].id, new_html);
-                            quiz_questions[question_num] = new_q;
+                        case "Discussion":
+                            CanvasDiscussionTopic new_topic = CanvasApi.PostNewDiscussionMessage(course_id, discussion.id, new_html);
+                            discussion = new_topic;
                             break;
-                        }
-                        if (comment)
-                        {
-                            quiz_questions[question_num].answers[int.Parse(answer_id)].answer_comments = new_html;
-                            CanvasQuizQuesiton new_q = CanvasApi.PostNewQuizQuestionAnswerComment(course_id, quiz.id, quiz_questions[question_num].id, quiz_questions[question_num].answers);
-                            quiz_questions[int.Parse(question_id)] = new_q;
-                        }
-                        else
-                        {
-                            quiz_questions[question_num].answers[int.Parse(answer_id)].html = new_html;
-                            CanvasQuizQuesiton new_q = CanvasApi.PostNewQuizQuestionAnswer(course_id, quiz.id, quiz_questions[question_num].id, quiz_questions[question_num].answers);
-                            quiz_questions[int.Parse(question_id)] = new_q;
-                        }
-                        break;
-                    default:
-                        break;
+                        case "Assignment":
+                            CanvasAssignment new_assignment = CanvasApi.PostNewAssignmentDescription(course_id, assignment.id, new_html);
+                            assignment = new_assignment;
+                            break;
+                        case "Quiz":
+                            if (question_id == "")
+                            {
+                                CanvasQuiz new_quiz = CanvasApi.PostNewQuizDescription(course_id, quiz.id, new_html);
+                                if (new_quiz.description == null)
+                                {
+                                    throw new Exception();
+                                }
+                                quiz = new_quiz;
+                                break;
+                            }
+                            int question_num = int.Parse(question_id);
+                            if (answer_id == "")
+                            {
+                                CanvasQuizQuesiton new_q = CanvasApi.PostNewQuizQuestionText(course_id, quiz.id, quiz_questions[question_num].id, new_html);
+                                if (new_q.question_text == null)
+                                {
+                                    throw new Exception();
+                                }
+                                quiz_questions[question_num] = new_q;
+                                break;
+                            }
+                            if (comment)
+                            {
+                                quiz_questions[question_num].answers[int.Parse(answer_id)].comments_html = new_html;
+                                CanvasQuizQuesiton new_q = CanvasApi.PostNewQuizQuestionAnswerComment(course_id, quiz.id, quiz_questions[question_num].id, quiz_questions[question_num].answers);
+                                if (new_q.answers[int.Parse(answer_id)].html == null)
+                                {
+                                    throw new Exception();
+                                }
+                                quiz_questions[int.Parse(question_id)] = new_q;
+                            }
+                            else
+                            {
+                                quiz_questions[question_num].answers[int.Parse(answer_id)].html = new_html;
+                                CanvasQuizQuesiton new_q = CanvasApi.PostNewQuizQuestionAnswer(course_id, quiz.id, quiz_questions[question_num].id, quiz_questions[question_num].answers);
+                                if (new_q.answers[int.Parse(answer_id)].html == null)
+                                {
+                                    throw new Exception();
+                                }
+                                quiz_questions[int.Parse(question_id)] = new_q;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    success = true;
                 }
+                catch
+                {
+                    System.Console.WriteLine("Error saving item to Canvas");
+                    success = false;
+                }                
                 return this;
             }
         }

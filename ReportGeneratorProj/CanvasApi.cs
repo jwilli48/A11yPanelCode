@@ -78,10 +78,11 @@ namespace My.CanvasApi
     {
         //https://canvas.instructure.com/doc/api/quiz_questions.html
         public int id { get; set; }
-        public string answer_text { get; set; }
-        public string answer_comments { get; set; }
+        public string text { get; set; }
         public string html { get; set; }
+        public string comments { get; set; }
         public string comments_html { get; set; }
+        public double weight { get; set; }
     }
     public class CanvasQuizQuesiton
     {

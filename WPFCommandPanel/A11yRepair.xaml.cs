@@ -305,12 +305,7 @@ namespace WPFCommandPanel
                             curNode = curPage.Doc.DocumentNode.SelectSingleNode(row.html);
                             break;
                         case "Bad use of <i> and/or <b>":
-                            var ibList = curPage.Doc.DocumentNode.SelectNodes("//i | //b");
-                            if (ibList.Count() > 1)
-                            {
-                                System.Windows.MessageBox.Show("Found more then one match, fix one then reselect issue to do next");
-                            }
-                            curNode = ibList.FirstOrDefault();
+                            curNode = curPage.Doc.DocumentNode.SelectSingleNode("//body");
                             break;
                         default:
                             curNode = curPage.Doc.DocumentNode.SelectSingleNode("//body");
@@ -459,8 +454,13 @@ namespace WPFCommandPanel
                         curPage.Doc.DocumentNode.OuterHtml,
                         question_id,
                         answer_id,
-                        comment
+                        comment,
+                        out bool saved
                         );
+                if(!saved)
+                {
+                    System.Windows.MessageBox.Show("Failed to save item to canvas");
+                }
             }
             else
             {
