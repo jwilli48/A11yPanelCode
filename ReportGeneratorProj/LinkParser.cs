@@ -103,7 +103,7 @@
                 return;
             }
             Parallel.ForEach(link_list, link =>
-            {   //Run it in parralell as this takes forever otherwise. Still somewhat slow when running into a bunch of links
+            {   //Run it in parrallel as this takes forever otherwise. Still somewhat slow when running into a bunch of links
                 if (link.Attributes["href"] != null)
                 {
                     if (new Regex("^#").IsMatch(link.Attributes["href"].Value))

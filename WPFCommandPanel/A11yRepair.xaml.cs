@@ -364,7 +364,7 @@ namespace WPFCommandPanel
             }
             if(curNode == null)
             {
-                System.Windows.MessageBox.Show("Issue was not found, report data is old. You probably want to generate a new report.");
+                System.Windows.MessageBox.Show("Issue was not found, report data may be old. You probably want to generate a new report.");
                 return;
             }
 

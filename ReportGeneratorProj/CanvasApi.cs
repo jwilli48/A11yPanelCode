@@ -311,6 +311,7 @@ namespace My.CanvasApi
 
         public static CanvasQuizQuesiton PostNewQuizQuestionAnswer(int course_id, int quiz_id, int question_id, List<CanvasQuizQuestionAnswers> new_answers)
         {
+            // Currently posting changes to question answers and comments does not work
             string url = $"{domain}/api/v1/courses/{course_id}/quizzes/{quiz_id}/questions/{question_id}";
             var restClient = new RestClient(url);
             var request = new RestRequest(Method.PUT);
@@ -329,6 +330,7 @@ namespace My.CanvasApi
 
         public static CanvasQuizQuesiton PostNewQuizQuestionAnswerComment(int course_id, int quiz_id, int question_id, List<CanvasQuizQuestionAnswers> new_answers)
         {
+            // Currently posting changes to question answers and comments does not work
             string url = $"{domain}/api/v1/courses/{course_id}/quizzes/{quiz_id}/questions/{question_id}";
             var restClient = new RestClient(url);
             var request = new RestRequest(Method.PUT);

@@ -47,8 +47,6 @@
    
     public class GenerateReport
     {
-        //This is where the program will start and take user input / run the reports, may or may not be needed based on how I can get the SpecFlow test to work.
-        //It is currently just a testing function
         public static void Main()
         {
             A11yParser a11YParser = new A11yParser();

@@ -62,7 +62,7 @@
                 return;
             }
 
-            // No long in use as we need to save a valid XPath. JavaScript messes it up. 
+            // No longer in use as we need to save a valid XPath. JavaScript messes it up. 
 
             //// Go through the online version to make sure there aren't JS issues
             //if (new Regex(@"iscontent\.byu\.edu|isdev\.byu\.edu|file:///").IsMatch(url))
@@ -521,7 +521,7 @@
             }
         }
         private void ProcessBrightcoveVideoHTML(DataToParse PageDocument)
-        {   //A lot of our HTMl templates use a div + javascript to insert the brightcove video.
+        {   //A lot of our HTML templates use a div + javascript to insert the brightcove video.
             var brightcove_list = PageDocument.Doc
                 .DocumentNode
                 ?.SelectNodes(@"//div[@id]")
@@ -743,7 +743,7 @@
                 background_color = background_color.Replace("#", "");
                 var restClient = new RestClient($"https://webaim.org/resources/contrastchecker/?fcolor={foreground_color}&bcolor={background_color}&api");
                 var request = new RestRequest(Method.GET);
-                //Will return single course object with parameters we want
+                //Will return single color object with parameters we want
                 var response = restClient.Execute<ColorContrast>(request).Data;
                 var text = string.Empty;
                 //See if we can get the inner text so we can identify the element if there was an issue found
