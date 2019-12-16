@@ -26,7 +26,7 @@ namespace WPFCommandPanel
     {
         //Need to referance the main window so that we can navigate to new pages from other elements
         public static MainWindow AppWindow;
-        //Not really needed to have this reference but if we want to add more tabs / pages then we can store the old pages so we don't lose any data from them.
+        // Refs to each of the tabs
         public static CommandPanel CommandPanelObj;
         public static A11yViewer a11YViewer;
         public static A11yRepair a11YRepair;

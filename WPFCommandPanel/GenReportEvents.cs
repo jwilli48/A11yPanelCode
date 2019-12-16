@@ -180,7 +180,7 @@ namespace WPFCommandPanel
                     });
                 }
                 MainWindow.a11YRepair.SetCourse(course);
-                e.Result = $"Report generated.\nTime taken: {s.Elapsed.ToString(@"hh\:mm\:ss")} for {course.PageHtmlList.Count()} pages\n";
+                e.Result = $"Report generated.\nTime taken: {s.Elapsed.ToString(@"hh\:mm\:ss")} for {course.PageHtmlList.Count()} items\n";
             }catch(Exception ex)
             {
                 e.Result = ex.Message + '\n' + ex.ToString() + '\n' + ex.StackTrace;

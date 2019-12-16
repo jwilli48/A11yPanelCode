@@ -45,6 +45,13 @@ namespace WPFCommandPanel
                     string path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\options.json";
 
                     File.WriteAllText(path, editor.Text);
+                    string json = "";
+                    using (StreamReader r = new StreamReader(path))
+                    {
+                        json = r.ReadToEnd();
+                    }
+                    MainWindow.panelOptions = JsonConvert.DeserializeObject<My.PanelOptions>(json);
+                    System.Console.WriteLine($"Saved option changes to {path}");
                     e.Handled = true;
                 }
             }
