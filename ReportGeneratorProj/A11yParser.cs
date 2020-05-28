@@ -219,7 +219,7 @@
                     }
                 }
                 else if (new Regex("", RegexOptions.IgnoreCase).IsMatch(alt))
-                {
+                {   //Empty alt text should be manually checked for decortive qualities
                     lock (Data)
                     {
                         Data.Add(new PageA11yData(PageDocument.Location, "Image", "", alt, "Empty Alt tag, check if image is decorotive", 1, image.XPath));
