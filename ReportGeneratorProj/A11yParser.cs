@@ -211,18 +211,11 @@
             {
                 var alt = image.Attributes["alt"]?.Value;
                 //Get the alt text
-                if (alt == null)
-                {   //Images should have alt tags, even if it is empty
-                    lock (Data)
-                    {
-                        Data.Add(new PageA11yData(PageDocument.Location, "Image", "", image.OuterHtml, "No alt attribute", 1, image.XPath));
-                    }
-                }
-                else if (new Regex("", RegexOptions.IgnoreCase).IsMatch(alt))
+                if (String.IsNullOrEmpty(alt))
                 {   //Empty alt text should be manually checked for decortive qualities
                     lock (Data)
                     {
-                        Data.Add(new PageA11yData(PageDocument.Location, "Image", "", alt, "Alt text may need adjustment", 1, image.XPath));
+                        Data.Add(new PageA11yData(PageDocument.Location, "Image", "", image.OuterHtml, "Alt text may need adjustment or No alt attribute", 1, image.XPath));
                     }
                 }
                 else if (new Regex("banner", RegexOptions.IgnoreCase).IsMatch(alt))
