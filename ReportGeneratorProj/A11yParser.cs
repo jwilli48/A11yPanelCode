@@ -218,6 +218,13 @@
                         Data.Add(new PageA11yData(PageDocument.Location, "Image", "", image.OuterHtml, "No alt attribute", 1, image.XPath));
                     }
                 }
+                else if (new Regex("", RegexOptions.IgnoreCase).IsMatch(alt))
+                {
+                    lock (Data)
+                    {
+                        Data.Add(new PageA11yData(PageDocument.Location, "Image", "", alt, "Empty Alt tag, check if image is decorotive", 1, image.XPath));
+                    }
+                }
                 else if (new Regex("banner", RegexOptions.IgnoreCase).IsMatch(alt))
                 {   //Banners shouldn't have alt text
                     lock (Data)
