@@ -222,7 +222,7 @@
                 {   //Empty alt text should be manually checked for decortive qualities
                     lock (Data)
                     {
-                        Data.Add(new PageA11yData(PageDocument.Location, "Image", "", alt, "Empty Alt tag, check if image is decorotive", 1, image.XPath));
+                        Data.Add(new PageA11yData(PageDocument.Location, "Image", "", alt, "Alt text may need adjustment", 1, image.XPath));
                     }
                 }
                 else if (new Regex("banner", RegexOptions.IgnoreCase).IsMatch(alt))
