@@ -755,8 +755,8 @@ namespace WPFCommandPanel
             });
             string excelPath = MainWindow.panelOptions.ReportPath + "\\" + Path.GetFileNameWithoutExtension(curReportFile) + ".xlsx";
             ExcelPackage Excel = new ExcelPackage(new FileInfo(excelPath));
-            ExcelRange cells = Excel.Workbook.Worksheets[1].Cells;
-            int rowNumber = 9;
+            ExcelRange cells = Excel.Workbook.Worksheets[2].Cells;
+            int rowNumber = 4;
             int curDataItem = data.Count() - 1;
             while (cells[rowNumber, 2].Value != null && (String)cells[rowNumber, 2].Value != "")
             {

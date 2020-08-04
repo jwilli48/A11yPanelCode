@@ -189,10 +189,10 @@
             //Insert all of the media data
             RowNumber = 4;
             Cells = Excel.Workbook.Worksheets[3].Cells;
-            Excel.Workbook.Worksheets[2].Column(4).Style.Numberformat.Format = "#############";
-            //Excel.Workbook.Worksheets[2].Column(6).Style.Numberformat.Format = "hh:mm:ss";
-            //Excel.Workbook.Worksheets[2].Column(11).Style.Numberformat.Format = "hh:mm:ss";
-            //Excel.Workbook.Worksheets[2].Column(12).Style.Numberformat.Format = "hh:mm:ss";
+            Excel.Workbook.Worksheets[3].Column(4).Style.Numberformat.Format = "#############";
+            //Excel.Workbook.Worksheets[3].Column(6).Style.Numberformat.Format = "hh:mm:ss";
+            //Excel.Workbook.Worksheets[3].Column(11).Style.Numberformat.Format = "hh:mm:ss";
+            //Excel.Workbook.Worksheets[3].Column(12).Style.Numberformat.Format = "hh:mm:ss";
             
             foreach (var data in data_list)
             {
