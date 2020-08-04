@@ -26,8 +26,8 @@
             this.Destination = destination_path;
             //Create the excel object from the template and set helper variables to be used accross functions
             this.Excel = new ExcelPackage(new FileInfo(PathToExcelTemplate));
-            this.Cells = Excel.Workbook.Worksheets[1].Cells;
-            this.RowNumber = 9;            
+            this.Cells = Excel.Workbook.Worksheets[2].Cells;
+            this.RowNumber = 4;            
         }
         private My.PanelOptions Options;
         private string Destination;
@@ -81,9 +81,9 @@
             }
             List<JsonDataFormat> json = new List<JsonDataFormat>();
             var numIssues = 0;
-            var row = 9;
+            var row = 4;
             string dataDir = Options.JsonDataDir;
-            Cells = Excel.Workbook.Worksheets[1].Cells;
+            Cells = Excel.Workbook.Worksheets[2].Cells;
             while (Cells[row, 2].Value != null && (String)Cells[row, 2].Value != "")
             {                
                 var data = new JsonDataFormat
@@ -116,8 +116,8 @@
         {   //This is the most complicated one to add to the excel document and so uses the helper function
             //All of the string inputs are from the excel document validation and should possibly be made dynamic as if they don't match it will throw an error.
             //data_list = data_list.Select(d => d as PageA11yData).Distinct().ToList<PageData>();
-            RowNumber = 9;
-            Cells = Excel.Workbook.Worksheets[1].Cells;
+            RowNumber = 4;
+            Cells = Excel.Workbook.Worksheets[2].Cells;
             foreach (var data in data_list)
             {
                 Cells[RowNumber, 2].Value = "Not Started";
@@ -188,7 +188,7 @@
         {
             //Insert all of the media data
             RowNumber = 4;
-            Cells = Excel.Workbook.Worksheets[2].Cells;
+            Cells = Excel.Workbook.Worksheets[3].Cells;
             Excel.Workbook.Worksheets[2].Column(4).Style.Numberformat.Format = "#############";
             //Excel.Workbook.Worksheets[2].Column(6).Style.Numberformat.Format = "hh:mm:ss";
             //Excel.Workbook.Worksheets[2].Column(11).Style.Numberformat.Format = "hh:mm:ss";
@@ -229,7 +229,7 @@
 
         private void AddLinkData(List<PageData> data_list)
         {   //Add all of the link data
-            Cells = Excel.Workbook.Worksheets[3].Cells;
+            Cells = Excel.Workbook.Worksheets[4].Cells;
             RowNumber = 4;
             foreach (var data in data_list)
             {
