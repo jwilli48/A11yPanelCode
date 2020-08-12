@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-M:\DESIGNER\Content EditorsELTA\Accessibility Assistants\A11yPanelCode\WPFCommandPanel\obj\Debug\
+c:\Users\Joshw\Documents\GitHub\A11yPanelCode\WPFCommandPanel\obj\Debug\
 WPFCommandPanel
 none
 false
 DEBUG;TRACE
-M:\DESIGNER\Content EditorsELTA\Accessibility Assistants\A11yPanelCode\WPFCommandPanel\App.xaml
-8617147242
+c:\Users\Joshw\Documents\GitHub\A11yPanelCode\WPFCommandPanel\App.xaml
+81681186367
 
-272065127404
-34-1413338670
+28869504803
+34591933817
 A11yRepair.xaml;A11yViewer.xaml;CommandPanel.xaml;DraggablePopup.xaml;LoadingSpinner.xaml;MainWindow.xaml;OptionsPage.xaml;Themes\Generic.xaml;
 
 True
